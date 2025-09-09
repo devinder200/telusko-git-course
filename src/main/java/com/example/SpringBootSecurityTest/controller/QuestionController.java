@@ -10,8 +10,7 @@ public class QuestionController {
     @GetMapping("/")
     public String getQuestions(){
         System.out.println("------------Entered in question controller--------");
-        System.out.println("------------Entered in question controller--------");
-        System.out.println("------------Entered in question controller--------");
+
         return "question";
     }
 }
