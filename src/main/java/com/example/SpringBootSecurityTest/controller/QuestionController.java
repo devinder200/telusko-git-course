@@ -11,6 +11,7 @@ public class QuestionController {
     public String getQuestions(){
         System.out.println("------------Entered in question controller--------");
         System.out.println("------------Entered in question controller--------");
+        System.out.println("------------Entered in question controller--------");
         return "question";
     }
 }
