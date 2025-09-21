@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 public class QuestionService {
 
     public String getQuestions() {
-        return "questions";
+        return "question";
     }
 }
