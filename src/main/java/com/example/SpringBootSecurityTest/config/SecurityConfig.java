@@ -19,7 +19,6 @@ public class SecurityConfig {
     //below code is for verifying username/password from db
     @Bean
     public AuthenticationProvider authenticationProvider(){
-        System.out.println("entered in authenticationProvider---");
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
         provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
         return provider;

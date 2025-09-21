@@ -14,7 +14,6 @@ public class QuestionController {
 
     @GetMapping("/")
     public String getQuestions(){
-        System.out.println("entered in getQuestions method");
         return questionService.getQuestions();
     }
 }

@@ -17,11 +17,9 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username)  {
-        System.out.println("entered in loadUserByUsername method--"+username);
         Users user = new Users();
         try{
              user = userDao.findByUsername(username);
-             System.out.println("user is-"+user);
         }catch (UsernameNotFoundException e){
             System.out.println("No Such username found");
             e.printStackTrace();
