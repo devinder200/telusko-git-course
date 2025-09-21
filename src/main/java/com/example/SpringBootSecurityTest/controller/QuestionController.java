@@ -12,7 +12,7 @@ public class QuestionController {
     @Autowired
     QuestionService questionService;
 
-    @GetMapping("/")
+    @GetMapping("/questions")
     public String getQuestions(){
         return questionService.getQuestions();
     }
