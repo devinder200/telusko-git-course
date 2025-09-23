@@ -25,6 +25,23 @@ public class MyUserDetailsService implements UserDetailsService {
             e.printStackTrace();
         }
 
+        //Alternate way
+        // return User.withUsername(user.getUsername())
+        //                   .password(user.getPassword())
+        //                   .roles(user.getRole())
+        //                   .build();
+
         return new MyUserDetails(user);
+    }
+
+    public String registerUser(Users currentUser) {
+        Users user = userDao.findByUsername(currentUser.getUsername());
+        if(user != null){
+           return "User Already Exist";
+        }
+        currentUser.setRole("USER");
+        userDao.save(currentUser);
+        return "User Registered.";
+
     }
 }

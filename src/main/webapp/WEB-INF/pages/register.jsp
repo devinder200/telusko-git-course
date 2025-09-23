@@ -3,22 +3,20 @@
 
 <html>
 <head>
-    <title>Custom Login</title>
+    <title>Register User</title>
 </head>
 <body>
-    <h2>Please Login</h2>
-     <form action="${pageContext.request.contextPath}/doLogin" method="post">
+    <h2>Please Register</h2>
+     <form action="${pageContext.request.contextPath}/registerUser" method="post">
 
          <label>Username:</label>
          <input type="text" name="username" /><br/>
          <label>Password:</label>
          <input type="password" name="password" /><br/>
-         <button type="submit">Login</button>
+         <button type="submit">Register</button>
      </form>
-    <br>
-
-     <a href="${pageContext.request.contextPath}/register">Register</a>
-
+<br>
+${message}
 
 </body>
 </html>
