@@ -7,13 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Base64;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
     UserDao userDao;
+
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 
     @Override
     public UserDetails loadUserByUsername(String username)  {
@@ -39,6 +44,7 @@ public class MyUserDetailsService implements UserDetailsService {
         if(user != null){
            return "User Already Exist";
         }
+        currentUser.setPassword(encoder.encode(currentUser.getPassword()));
         currentUser.setRole("USER");
         userDao.save(currentUser);
         return "User Registered.";
