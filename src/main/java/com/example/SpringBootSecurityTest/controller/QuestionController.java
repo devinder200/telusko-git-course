@@ -5,6 +5,7 @@ import com.example.SpringBootSecurityTest.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class QuestionController {
@@ -12,6 +13,7 @@ public class QuestionController {
     @Autowired
     QuestionService questionService;
 
+    @ResponseBody
     @GetMapping("/questions")
     public String getQuestions(){
         return questionService.getQuestions();

@@ -3,7 +3,9 @@ package com.example.SpringBootSecurityTest.controller;
 import com.example.SpringBootSecurityTest.config.MyUserDetails;
 import com.example.SpringBootSecurityTest.modal.Users;
 import com.example.SpringBootSecurityTest.service.MyUserDetailsService;
+import com.example.SpringBootSecurityTest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,26 +16,38 @@ public class LoginController {
     @Autowired
     MyUserDetailsService myUserDetailsService;
 
-    @GetMapping("/login")
-    public String login(){
-        return "login";
-    }
+    @Autowired
+    UserService userService;
 
-    @GetMapping("/register")
-    public String register(){
-        return "register";
-    }
+//    @GetMapping("/login")
+//    public String getLogin(){
+//        System.out.println("entered in getLogin method");
+//        return "login";
+//    }
+//
+//    @GetMapping("/register")
+//    public String getRegister(){
+//        System.out.println("entered in getRegister method");
+//        return "register";
+//    }
+//
+//    @GetMapping("/home")
+//    public String getHome(@RequestBody Users user){
+//        System.out.println("entered in home method");
+//        return "home";
+//    }
 
-
+    @ResponseBody
     @PostMapping("/registerUser")
-    public ModelAndView registerUser(@ModelAttribute("user") Users user){
-        ModelAndView mv = new ModelAndView("register");
-        return mv.addObject("message", myUserDetailsService.registerUser(user));
+    public Users registerUser(@RequestBody Users user){
+            return userService.register(user);
     }
 
-    @GetMapping("/home")
-    public String home(){
-        return "home";
+    @ResponseBody
+    @PostMapping("/login")
+    public String login(@RequestBody Users user){
+        return userService.verify(user);
     }
+
 
 }
