@@ -45,24 +45,24 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register", "/registerUser", "/WEB-INF/pages/**").permitAll()
+                        .requestMatchers("/login", "/register", "/registerUser", "/doLogin", "/WEB-INF/pages/**")
+                        .permitAll()
                         .anyRequest().authenticated()
                 )
-//                .formLogin(form -> form
-//                        .loginPage("/login")                 // GET -> login.jsp
-//                        .loginProcessingUrl("/doLogin")      // POST -> handled by Spring Security
-//                        .usernameParameter("username")       // must match JSP input name
-//                        .passwordParameter("password")
-//                        .defaultSuccessUrl("/home", true)    // Redirect after success
-//                        .failureUrl("/login?error=true")
-//                        .permitAll()
-//                )
-//                .logout(logout -> logout
-//                        .logoutUrl("/logout")
-//                        .logoutSuccessUrl("/login?logout=true")
-//                        .permitAll()
-//                )
- //               .httpBasic(Customizer.withDefaults()) //here we allow to access request from postman etc.
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            // redirect manually to login without error param
+                            response.sendRedirect("/login");
+                        })
+                )
+                .formLogin(form -> form.disable()) // 🚀 disable Spring Security form login completely
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .deleteCookies("jwtToken")// removes cookie automatically
+                        .logoutSuccessUrl("/login?logout=true")
+                        .permitAll()
+                )
+
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Creating session stateless, now cant login from browser.
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); // it means first go to jwtFilter and then to UsernamePasswordAuthenticationFilter
 

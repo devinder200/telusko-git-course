@@ -16,7 +16,9 @@
          <button type="submit">Register</button>
      </form>
 <br>
-${message}
+<p style="color:green">${message}</p>
+<br>
 
+     <a href="${pageContext.request.contextPath}/login">Login</a>
 </body>
 </html>

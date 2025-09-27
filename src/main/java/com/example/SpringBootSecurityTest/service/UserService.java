@@ -22,9 +22,16 @@ public class UserService {
     AuthenticationManager authenticationManager;
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
-    public Users register(Users user) {
+    public String register(Users user) {
+        Users savedUser = userDao.findByUsername(user.getUsername());
+        if(savedUser != null){
+            return "Username Already Exist";
+        }
             user.setPassword(encoder.encode(user.getPassword()));
-            return userDao.save(user);
+            user.setRole("USER");
+            userDao.save(user);
+
+            return "User Registered Successfully";
     }
 
     public String verify(Users user) {
