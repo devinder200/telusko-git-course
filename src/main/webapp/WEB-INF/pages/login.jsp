@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>
 <head>
@@ -16,7 +17,10 @@
          <button type="submit">Login</button>
      </form>
     <br>
+ <!-- Google OAuth2 Login -->
+    <a href="<c:url value='/oauth2/authorization/google'/>">Login with Google</a>
 
+    <br>
      <a href="${pageContext.request.contextPath}/register">Register</a>
 
 
