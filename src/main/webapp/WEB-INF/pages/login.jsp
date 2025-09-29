@@ -19,6 +19,9 @@
     <br>
  <!-- Google OAuth2 Login -->
     <a href="<c:url value='/oauth2/authorization/google'/>">Login with Google</a>
+    <br>
+    <!-- Github OAuth2 Login -->
+        <a href="<c:url value='/oauth2/authorization/github'/>">Login with Github</a>
 
     <br>
      <a href="${pageContext.request.contextPath}/register">Register</a>

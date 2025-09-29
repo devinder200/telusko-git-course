@@ -9,3 +9,4 @@ Step-2: Then add the config code in application.properties.
 Step-3: Then add the google login link in login.jsp
 
 Step-4: Add the config code in securityConfig.class
+
